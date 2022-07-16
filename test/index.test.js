@@ -1,12 +1,9 @@
 import { test } from 'tap'
+import esmock from 'esmock'
 
-test('isMemoryAvailable', t => {
-  t.plan(1)
-
-  t.test('should return false if memory === 0', t => {
-    t.plan(1)
-
-    const mockedIndexModule = t.mock('./src/index', {
+test('isMemoryAvailable', async t => {
+  t.test('should return false if memory === 0', async t => {
+    const mockedIndexModule = await esmock('../src/index.js', {
       os: {
         freemem: () => 0
       }
